@@ -6,7 +6,8 @@ class Rover
     end
 
     def read_instruction
-        print "Current co-ordinates are #{@x} #{@y} #{nsew}. Please enter movement instructions: "
+        nsew = { 0 => 'N', 1 => 'E', 2 => 'S', 3 => 'W' }
+        print "Current co-ordinates are #{@x} #{@y} #{nsew[@direction]}. Please enter movement instructions: "
         instruction = gets.chomp.upcase.delete(' ').to_s
         instructions = instruction.split('')
         instructions.each do |char|
@@ -19,7 +20,7 @@ class Rover
                 move
             end
         end
-        puts "New co-ordinates are #{@x} #{@y} #{nsew}."
+        puts "New co-ordinates are #{@x} #{@y} #{nsew[@direction]}."
     end
 
     def turn(char)
@@ -29,7 +30,7 @@ class Rover
             @direction = (@direction + 1) % 4
         end
     end
-
+    
     def move
         message = "Cannot move further!"
         if @direction == 0
@@ -40,18 +41,6 @@ class Rover
             @y == 1 ? puts(message) : @y -= 1
         elsif @direction == 3
             @x == 1 ? puts(message) : @x -= 1
-        end
-    end
-
-    def nsew
-        if @direction == 0
-            return 'N'
-        elsif @direction == 1
-            return 'E'
-        elsif @direction == 2
-            return 'S'
-        elsif @direction == 3
-            return 'W'
         end
     end
 end
