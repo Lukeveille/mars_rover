@@ -6,7 +6,7 @@ class Rover
     end
 
     def read_instruction
-        nsew = { 0 => 'N', 1 => 'E', 2 => 'S', 3 => 'W' }
+        nsew = ['N', 'E', 'S', 'W']
         print "Current co-ordinates are #{@x} #{@y} #{nsew[@direction]}. Please enter movement instructions: "
         instruction = gets.chomp.upcase.delete(' ').to_s
         instructions = instruction.split('')
